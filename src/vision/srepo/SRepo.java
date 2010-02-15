@@ -23,9 +23,8 @@ public class SRepo {
   private FileSystem fileSystem;
 
   public SRepo(String sourcePath) {
-    File sourceFile = new File(sourcePath);
 
-    FileSystem sourceFileSystem = new FileSystem(sourceFile);
+    FileSystem sourceFileSystem = new FileSystem(sourcePath);
 
     sourceFileSystem.build();
 

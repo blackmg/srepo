@@ -1,6 +1,8 @@
 package vision.srepo.filesystem;
 
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
 /**
  * Created by IntelliJ IDEA.
@@ -9,20 +11,27 @@ import java.io.File;
  * Time: 10:57:31
  */
 public class FileSystem {
-  private File rootFile;
-  private FileEntry rootFileEntry;
+    private DirEntry rootFileEntry;
+    private final Path path;
 
-  public FileSystem(File rootFile) {
-    this.rootFile = rootFile;
-  }
+    public FileSystem(String rootFilePath) {
+        final java.nio.file.FileSystem fileSystem = FileSystems.getDefault();
+        path = fileSystem.getPath(rootFilePath);
+    }
 
-  public void build() {
-    rootFileEntry = new FileEntry();
-    rootFileEntry.build(rootFile);
-  }
+    public void build() {
+        rootFileEntry = new DirEntry(path);
 
-  public void print() {
-    rootFileEntry.print(0);
-  }
+        // rootFileEntry.build(rootFile);
+        try {
+            rootFileEntry.build(path);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+    }
+
+    public void print() {
+        rootFileEntry.print(0);
+    }
 
 }
