@@ -2,8 +2,6 @@ package vision.srepo;
 
 import vision.srepo.filesystem.FileSystem;
 
-import java.io.File;
-
 /**
  * Created by IntelliJ IDEA.
  * User: ERVJO
@@ -22,21 +20,33 @@ import java.io.File;
 public class SRepo {
   private FileSystem fileSystem;
 
-  public SRepo(String sourcePath) {
+  public SRepo(String serverPath, String clientPath) {
 
-    FileSystem sourceFileSystem = new FileSystem(sourcePath);
+    System.out.println("Server in " + serverPath);
+    System.out.println("-------------------------------");
+    FileSystem serverFileSystem = new FileSystem(serverPath);
 
-    sourceFileSystem.build();
+    serverFileSystem.build();
 
-    sourceFileSystem.print();
+    serverFileSystem.print();
+
+    System.out.println("Client in " + serverPath);
+    System.out.println("-------------------------------");
+
+    FileSystem clientFileSystem = new FileSystem(clientPath);
+
+    clientFileSystem.build();
+
+    clientFileSystem.print();
 
   }
 
 
   public static void main(String args[]) {
-    String path = "C:\\extra\\3pps\\apache-ant-1.7.1";
+    String serverPath = "testfiles\\serverrepo";
+    String clientPath = "testfiles\\clientrepo";
 
-    SRepo sRepo = new SRepo(path);
+    SRepo sRepo = new SRepo(serverPath,clientPath);
 
   }
 }

@@ -30,6 +30,10 @@ public class FileSystem {
         }
     }
 
+    public DirEntry getRootFileEntry() {
+        return rootFileEntry;
+    }
+
     public void print() {
         rootFileEntry.print(0);
     }
