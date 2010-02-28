@@ -13,6 +13,7 @@
   <component name="CodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
       <value>
+        <option name="LINE_SEPARATOR" value="&#10;" />
         <ADDITIONAL_INDENT_OPTIONS fileType="groovy">
           <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
@@ -228,6 +229,9 @@
   </component>
   <component name="ProjectDetails">
     <option name="projectName" value="srepo" />
+  </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="ervjo" />
   </component>
   <component name="ProjectModuleManager">
     <modules>

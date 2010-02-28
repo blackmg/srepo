@@ -12,5 +12,5 @@ public class DiffEntry {
     private Entry sourceEntry;
     private Entry targetEntry;
 
-    
+
 }

@@ -18,35 +18,35 @@ import vision.srepo.filesystem.FileSystem;
  * 5. Store new repo status for coming pulls
  */
 public class SRepo {
-  private FileSystem fileSystem;
+    private FileSystem fileSystem;
 
-  public SRepo(String serverPath, String clientPath) {
+    public SRepo(String serverPath, String clientPath) {
 
-    System.out.println("Server in " + serverPath);
-    System.out.println("-------------------------------");
-    FileSystem serverFileSystem = new FileSystem(serverPath);
+        System.out.println("Server in " + serverPath);
+        System.out.println("-------------------------------");
+        FileSystem serverFileSystem = new FileSystem(serverPath);
 
-    serverFileSystem.build();
+        serverFileSystem.build();
 
-    serverFileSystem.print();
+        serverFileSystem.print();
 
-    System.out.println("Client in " + serverPath);
-    System.out.println("-------------------------------");
+        System.out.println("Client in " + serverPath);
+        System.out.println("-------------------------------");
 
-    FileSystem clientFileSystem = new FileSystem(clientPath);
+        FileSystem clientFileSystem = new FileSystem(clientPath);
 
-    clientFileSystem.build();
+        clientFileSystem.build();
 
-    clientFileSystem.print();
+        clientFileSystem.print();
 
-  }
+    }
 
 
-  public static void main(String args[]) {
-    String serverPath = "testfiles\\serverrepo";
-    String clientPath = "testfiles\\clientrepo";
+    public static void main(String args[]) {
+        String serverPath = "testfiles\\serverrepo";
+        String clientPath = "testfiles\\clientrepo";
 
-    SRepo sRepo = new SRepo(serverPath,clientPath);
+        SRepo sRepo = new SRepo(serverPath, clientPath);
 
-  }
+    }
 }
