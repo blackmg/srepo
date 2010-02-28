@@ -21,10 +21,13 @@ public class DiffSystem {
 
     public void build() {
 
-//        rootDiffEntry = new rootDiffEntry(sourceFileSystem.getRootFileEntry(),
-//                targetFileSystem.getRootFileEntry());
-//
-//            rootFileEntry.build(path);
+        rootDiffEntry = new DiffEntry(sourceFileSystem.getRootFileEntry(),
+                targetFileSystem.getRootFileEntry());
+
+//        rootDiffEntry.build(path);
     }
 
+    public void print() {
+        //To change body of created methods use File | Settings | File Templates.
+    }
 }

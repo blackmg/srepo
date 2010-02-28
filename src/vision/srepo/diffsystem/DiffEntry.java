@@ -1,5 +1,6 @@
 package vision.srepo.diffsystem;
 
+import vision.srepo.BasicEntry;
 import vision.srepo.filesystem.Entry;
 
 /**
@@ -8,9 +9,18 @@ import vision.srepo.filesystem.Entry;
  * Time: 10:44:36
  * To change this template use File | Settings | File Templates.
  */
-public class DiffEntry {
+public class DiffEntry extends BasicEntry {
     private Entry sourceEntry;
     private Entry targetEntry;
 
+    public DiffEntry(Entry sourceEntry, Entry targetEntry) {
+        super(sourceEntry != null ? sourceEntry.getName() : targetEntry.getName());
+        this.sourceEntry = sourceEntry;
+        this.targetEntry = targetEntry;
+    }
 
+    @Override
+    public String toPrettyPrint() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

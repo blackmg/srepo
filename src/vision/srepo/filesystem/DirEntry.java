@@ -56,6 +56,11 @@ public class DirEntry extends Entry {
     }
 
     @Override
+    public boolean isFile() {
+        return false;
+    }
+
+    @Override
     public String toPrettyPrint() {
         return "<D> " + getName();
     }

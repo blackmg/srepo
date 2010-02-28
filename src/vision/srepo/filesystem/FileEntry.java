@@ -10,13 +10,17 @@ import java.nio.file.attribute.FileTime;
  */
 public class FileEntry extends Entry {
 
-
     public FileEntry(String name, long modified) {
         super(name, modified);
     }
 
     public FileEntry(String name, FileTime modifiedFileTime) {
         super(name, modifiedFileTime);
+    }
+
+    @Override
+    public boolean isFile() {
+        return true;
     }
 
     @Override

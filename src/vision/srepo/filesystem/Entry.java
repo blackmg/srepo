@@ -1,8 +1,8 @@
 package vision.srepo.filesystem;
 
+import vision.srepo.BasicEntry;
+
 import java.nio.file.attribute.FileTime;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,12 +11,11 @@ import java.util.List;
  * Time: 11:48:30
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Entry {
-    private final String name;
+public abstract class Entry extends BasicEntry {
     private final long modified;  //millisecs
 
     public Entry(String name, long modified) {
-        this.name = name;
+        super(name);
         this.modified = modified;
     }
 
@@ -24,28 +23,14 @@ public abstract class Entry {
         this(name, modifiedFileTime.toMillis());
     }
 
-    public void print(int indent) {
+    public abstract boolean isFile();
 
-        for (int m = 0; m < indent; m++) {
-            System.out.print("  ");
-        }
-        System.out.println(toPrettyPrint());
-        for (Entry child : getChildren()) {
-            child.print(indent + 1);
-        }
-    }
-
-    public List<Entry> getChildren() {
-        return Collections.EMPTY_LIST;
-    }
-
-    public String getName() {
-        return name;
+    public boolean isDirectory() {
+        return !isFile();
     }
 
     public long getModified() {
         return modified;
     }
 
-    public abstract String toPrettyPrint();
 }

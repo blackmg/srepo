@@ -1,5 +1,6 @@
 package vision.srepo;
 
+import vision.srepo.diffsystem.DiffSystem;
 import vision.srepo.filesystem.FileSystem;
 
 /**
@@ -38,6 +39,15 @@ public class SRepo {
         clientFileSystem.build();
 
         clientFileSystem.print();
+
+        System.out.println("DiffSystem");
+        System.out.println("-------------------------------");
+
+        DiffSystem diffSystem = new DiffSystem(serverFileSystem, clientFileSystem);
+
+        diffSystem.build();
+
+        diffSystem.print();
 
     }
 
