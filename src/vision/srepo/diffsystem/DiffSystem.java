@@ -1,9 +1,6 @@
 package vision.srepo.diffsystem;
 
-import vision.srepo.filesystem.DirEntry;
 import vision.srepo.filesystem.FileSystem;
-
-import java.io.IOException;
 
 /**
  * User: ervjo
@@ -12,22 +9,22 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class DiffSystem {
-  private FileSystem sourceFileSystem;
-  private FileSystem targetFileSystem;
+    private FileSystem sourceFileSystem;
+    private FileSystem targetFileSystem;
 
-  private DiffEntry rootDiffEntry;
+    private DiffEntry rootDiffEntry;
 
-  public DiffSystem(FileSystem sourceFileSystem, FileSystem targetFileSystem) {
-    this.sourceFileSystem = sourceFileSystem;
-    this.targetFileSystem = targetFileSystem;
-  }
+    public DiffSystem(FileSystem sourceFileSystem, FileSystem targetFileSystem) {
+        this.sourceFileSystem = sourceFileSystem;
+        this.targetFileSystem = targetFileSystem;
+    }
 
-     public void build() {
+    public void build() {
 
-        rootDiffEntry = new rootDiffEntry(sourceFileSystem.getRootFileEntry(),
-                targetFileSystem.getRootFileEntry());
-
-            rootFileEntry.build(path);
+//        rootDiffEntry = new rootDiffEntry(sourceFileSystem.getRootFileEntry(),
+//                targetFileSystem.getRootFileEntry());
+//
+//            rootFileEntry.build(path);
     }
 
 }
