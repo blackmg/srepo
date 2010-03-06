@@ -1,5 +1,7 @@
 package vision.srepo.filesystem;
 
+import vision.srepo.BasicSystem;
+
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -10,9 +12,10 @@ import java.nio.file.Path;
  * Date: 2010-jan-31
  * Time: 10:57:31
  */
-public class FileSystem {
+public class FileSystem extends BasicSystem<FileEntry> {
     private DirEntry rootFileEntry;
     private final Path path;
+
 
     public FileSystem(String rootFilePath) {
         final java.nio.file.FileSystem fileSystem = FileSystems.getDefault();
@@ -22,7 +25,8 @@ public class FileSystem {
     public void build() {
         rootFileEntry = new DirEntry(path);
 
-        // rootFileEntry.build(rootFile);
+        setRootBasicEntry(rootFileEntry);
+
         try {
             rootFileEntry.build(path);
         } catch (IOException e) {
@@ -32,10 +36,6 @@ public class FileSystem {
 
     public DirEntry getRootFileEntry() {
         return rootFileEntry;
-    }
-
-    public void print() {
-        rootFileEntry.print(0);
     }
 
 }

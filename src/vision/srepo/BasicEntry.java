@@ -38,5 +38,24 @@ public abstract class BasicEntry {
         return name;
     }
 
+    public abstract boolean isFile();
+
+
+    public void added(BasicSystem basicSystem) {
+        if (isFile()) {
+            basicSystem.fileAdded(this);
+        }
+    }
+
+    public void removed(BasicSystem basicSystem) {
+        if (isFile()) {
+            basicSystem.fileRemoved(this);
+        }
+    }
+
+    public Checksum getChecksum() {
+        return null;
+    }
+
     public abstract String toPrettyPrint();
 }

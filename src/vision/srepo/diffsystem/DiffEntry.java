@@ -20,6 +20,14 @@ public class DiffEntry extends BasicEntry {
     }
 
     @Override
+    public boolean isFile() {
+        boolean ret = sourceEntry != null && sourceEntry.isFile();
+        ret |= targetEntry != null && targetEntry.isFile();
+
+        return ret;
+    }
+
+    @Override
     public String toPrettyPrint() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

@@ -3,6 +3,8 @@ package vision.srepo;
 import vision.srepo.diffsystem.DiffSystem;
 import vision.srepo.filesystem.FileSystem;
 
+import java.io.File;
+
 /**
  * Created by IntelliJ IDEA.
  * User: ERVJO
@@ -34,21 +36,20 @@ public class SRepo {
         System.out.println("Client in " + serverPath);
         System.out.println("-------------------------------");
 
+        File clientRoot = new File(clientPath);
+        if (!clientRoot.exists()) {
+            clientRoot.mkdir();
+        }
+
         FileSystem clientFileSystem = new FileSystem(clientPath);
 
         clientFileSystem.build();
 
         clientFileSystem.print();
 
-        System.out.println("DiffSystem");
-        System.out.println("-------------------------------");
-
         DiffSystem diffSystem = new DiffSystem(serverFileSystem, clientFileSystem);
 
-        diffSystem.build();
-
         diffSystem.print();
-
     }
 
 

@@ -231,7 +231,11 @@
     <option name="projectName" value="srepo" />
   </component>
   <component name="ProjectDictionaryState">
-    <dictionary name="ervjo" />
+    <dictionary name="ervjo">
+      <words>
+        <w>checksum</w>
+      </words>
+    </dictionary>
   </component>
   <component name="ProjectModuleManager">
     <modules>
