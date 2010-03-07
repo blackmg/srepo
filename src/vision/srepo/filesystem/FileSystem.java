@@ -5,6 +5,8 @@ import vision.srepo.BasicSystem;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,6 +19,7 @@ public class FileSystem extends BasicSystem<FileEntry> {
     private final Path path;
     private java.nio.file.FileSystem fileSystem;
 
+    public final static List<BasicFileEntry> EMPTY_ENTRY_LIST = new ArrayList<BasicFileEntry>(0);
 
     public FileSystem(String rootFilePath) {
         fileSystem = FileSystems.getDefault();

@@ -1,8 +1,8 @@
 package vision.srepo;
 
-import vision.srepo.filesystem.Entry;
+import vision.srepo.filesystem.BasicFileEntry;
+import vision.srepo.filesystem.FileSystem;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,13 +35,13 @@ public abstract class BasicEntry {
             System.out.print("  ");
         }
         System.out.println(toPrettyPrint());
-        for (Entry child : getChildren()) {
+        for (BasicFileEntry child : getChildren()) {
             child.print(indent + 1);
         }
     }
 
-    public List<Entry> getChildren() {
-        return Collections.EMPTY_LIST;
+    public List<BasicFileEntry> getChildren() {
+        return FileSystem.EMPTY_ENTRY_LIST;
     }
 
     public String getName() {

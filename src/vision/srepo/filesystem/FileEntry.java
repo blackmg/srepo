@@ -10,7 +10,7 @@ import java.nio.file.attribute.FileTime;
  * Date: 2010-jan-31
  * Time: 10:59:52
  */
-public class FileEntry extends Entry {
+public class FileEntry extends BasicFileEntry {
 
     public FileEntry(String name, BasicEntry parent, long modified) {
         super(name, parent, modified);

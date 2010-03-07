@@ -18,7 +18,7 @@ import java.util.List;
  * Time: 11:51:51
  * To change this template use File | Settings | File Templates.
  */
-public class DirEntry extends Entry {
+public class DirEntry extends BasicFileEntry {
     private List<FileEntry> files;
     private List<DirEntry> dirs;
     private FileSystem fileSystem;
@@ -46,8 +46,8 @@ public class DirEntry extends Entry {
     }
 
     @Override
-    public List<Entry> getChildren() {
-        List<Entry> ret = new ArrayList<Entry>();
+    public List<BasicFileEntry> getChildren() {
+        List<BasicFileEntry> ret = new ArrayList<BasicFileEntry>();
         if (files != null) {
             ret.addAll(files);
         }

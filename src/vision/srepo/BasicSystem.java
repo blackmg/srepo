@@ -60,7 +60,6 @@ public class BasicSystem<E extends BasicEntry> {
 
     public void fileAdded(E entry) {
         if (entry.isFile()) {
-            System.out.println("BasicSystem.fileAdded : " + entry.getName());
             addChecksum(entry, entry.getChecksum());
             byNameIndex.put(entry.getName(), entry);
         }

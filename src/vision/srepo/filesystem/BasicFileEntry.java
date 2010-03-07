@@ -12,22 +12,22 @@ import java.nio.file.attribute.FileTime;
  * Time: 11:48:30
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Entry extends BasicEntry {
+public abstract class BasicFileEntry extends BasicEntry {
     private final long modified;  //millisecs
 
-    public Entry(String name, BasicEntry parent, long modified) {
+    public BasicFileEntry(String name, BasicEntry parent, long modified) {
         super(name, parent);
         this.modified = modified;
     }
 
-    public Entry(String name, BasicEntry parent, FileTime modifiedFileTime) {
+    public BasicFileEntry(String name, BasicEntry parent, FileTime modifiedFileTime) {
         this(name, parent, modifiedFileTime.toMillis());
     }
 
     public abstract boolean isFile();
 
-    public Entry getParentEntry() {
-        return (Entry) getParent();
+    public BasicFileEntry getParentEntry() {
+        return (BasicFileEntry) getParent();
     }
 
     public Path getPath() {

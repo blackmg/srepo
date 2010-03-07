@@ -1,7 +1,7 @@
 package vision.srepo.diffsystem;
 
 import vision.srepo.BasicEntry;
-import vision.srepo.filesystem.Entry;
+import vision.srepo.filesystem.BasicFileEntry;
 
 /**
  * User: ervjo
@@ -10,10 +10,10 @@ import vision.srepo.filesystem.Entry;
  * To change this template use File | Settings | File Templates.
  */
 public class DiffEntry extends BasicEntry {
-    private Entry sourceEntry;
-    private Entry targetEntry;
+    private BasicFileEntry sourceEntry;
+    private BasicFileEntry targetEntry;
 
-    public DiffEntry(Entry parent, Entry sourceEntry, Entry targetEntry) {
+    public DiffEntry(BasicFileEntry parent, BasicFileEntry sourceEntry, BasicFileEntry targetEntry) {
         super(sourceEntry != null ? sourceEntry.getName() : targetEntry.getName(), parent);
         this.sourceEntry = sourceEntry;
         this.targetEntry = targetEntry;
