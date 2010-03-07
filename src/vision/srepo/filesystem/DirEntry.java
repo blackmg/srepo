@@ -21,7 +21,7 @@ import java.util.List;
 public class DirEntry extends Entry {
     private List<FileEntry> files;
     private List<DirEntry> dirs;
-
+    private FileSystem fileSystem;
 
     public DirEntry(String name, BasicEntry parent, long modified) {
         super(name, parent, modified);
@@ -64,10 +64,15 @@ public class DirEntry extends Entry {
 
     @Override
     public String toPrettyPrint() {
-        return "<D> " + getName();
+        return "<D> " + getName() + " -> " + getPath().toAbsolutePath();
+    }
+
+    public FileSystem getFileSystem() {
+        return fileSystem;
     }
 
     public void build(Path path, FileSystem fileSystem) throws IOException {
+        this.fileSystem = fileSystem;
 
         DirectoryStream<Path> directoryStream = path.newDirectoryStream();
 

@@ -15,11 +15,20 @@ import java.nio.file.Path;
 public class FileSystem extends BasicSystem<FileEntry> {
     private DirEntry rootFileEntry;
     private final Path path;
+    private java.nio.file.FileSystem fileSystem;
 
 
     public FileSystem(String rootFilePath) {
-        final java.nio.file.FileSystem fileSystem = FileSystems.getDefault();
+        fileSystem = FileSystems.getDefault();
         path = fileSystem.getPath(rootFilePath);
+    }
+
+    public java.nio.file.FileSystem getFileSystem() {
+        return fileSystem;
+    }
+
+    public Path getRootPath() {
+        return path;
     }
 
     public void build() {

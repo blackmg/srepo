@@ -25,6 +25,7 @@ public class FileEntry extends Entry {
         return true;
     }
 
+
     @Override
     public String toPrettyPrint() {
         return "<F> " + getName();

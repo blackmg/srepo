@@ -2,6 +2,7 @@ package vision.srepo.filesystem;
 
 import vision.srepo.BasicEntry;
 
+import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 
 /**
@@ -24,6 +25,23 @@ public abstract class Entry extends BasicEntry {
     }
 
     public abstract boolean isFile();
+
+    public Entry getParentEntry() {
+        return (Entry) getParent();
+    }
+
+    public Path getPath() {
+        if (isRoot()) {
+            return getFileSystem().getRootPath();
+        }
+        final Path parentPath = getParentEntry().getPath();
+        final Path path = parentPath.resolve(getName());
+        return path;
+    }
+
+    public FileSystem getFileSystem() {
+        return getParentEntry().getFileSystem();
+    }
 
     public boolean isDirectory() {
         return !isFile();
