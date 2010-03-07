@@ -96,7 +96,8 @@ public class DirEntry extends BasicFileEntry {
                     final FileTime modifiedAttribute = attributes.lastModifiedTime();
                     final String name = childPath.getName().toString();
 
-                    FileEntry fileEntry = new FileEntry(name, this, modifiedAttribute);
+                    FileEntry fileEntry = new FileEntry(name, this, modifiedAttribute,
+                            attributes.size());
                     files.add(fileEntry);
                     fileEntry.added(fileSystem);
                 }

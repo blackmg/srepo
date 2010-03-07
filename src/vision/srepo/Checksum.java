@@ -1,10 +1,15 @@
 package vision.srepo;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 import java.security.Security;
+import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -14,22 +19,28 @@ import java.util.Set;
  * To change this template use File | Settings | File Templates.
  */
 public class Checksum {
-    private long size;
-    private MessageDigest messageDigest;
+    private final long size;
     private byte[] digiest;
+    private int hashcode;
 
-    public Checksum(File file) {
+    public Checksum(Path path, long size) {
         this.size = size;
         try {
-            messageDigest = MessageDigest.getInstance("SHA1");
-            FileInputStream fileInputStream = new FileInputStream(file);
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
+            InputStream fileInputStream = path.newInputStream();
             BufferedInputStream input = new BufferedInputStream(fileInputStream);
-            int tmp = 0;
-            while ((tmp = input.read()) != 1) {
+            int tmp;
+            System.out.println("Checksum.Checksum - reading " + path);
+
+            while ((tmp = input.read()) != -1) {
                 messageDigest.update((byte) tmp);
             }
-
             digiest = messageDigest.digest();
+            for (byte b : digiest) {
+                hashcode = 31 * hashcode + b;
+            }
+            input.close();
+            fileInputStream.close();
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -40,6 +51,37 @@ public class Checksum {
         }
     }
 
+    public byte[] getDigiest() {
+        return digiest;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        Checksum checksum = (Checksum) o;
+
+        if (size != checksum.size) return false;
+        if (hashcode != checksum.hashcode) return false;
+        if (!Arrays.equals(digiest, checksum.digiest)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return hashcode;
+    }
+
+    @Override
+    public String toString() {
+        final int length = digiest.length;
+        return "Checksum{" +
+                "size=" + size +
+                ", digiest=" + digiest[length - 1] +
+                +digiest[length - 2] +
+                '}';
+    }
 
     public static void main(String[] args) {
         try {
