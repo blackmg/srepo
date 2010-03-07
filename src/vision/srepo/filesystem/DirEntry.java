@@ -65,7 +65,7 @@ public class DirEntry extends Entry {
         return "<D> " + getName();
     }
 
-    public void build(Path path) throws IOException {
+    public void build(Path path, FileSystem fileSystem) throws IOException {
 
         DirectoryStream<Path> directoryStream = path.newDirectoryStream();
 
@@ -91,6 +91,7 @@ public class DirEntry extends Entry {
 
                     FileEntry fileEntry = new FileEntry(name, modifiedAttribute);
                     files.add(fileEntry);
+                    fileEntry.added(fileSystem);
                 }
             }
         } finally {
@@ -103,7 +104,7 @@ public class DirEntry extends Entry {
                 final String name = dirInfo.path.getName().toString();
 
                 DirEntry dirEntry = new DirEntry(name, dirInfo.attributes.lastModifiedTime());
-                dirEntry.build(dirInfo.path);
+                dirEntry.build(dirInfo.path, fileSystem);
                 dirs.add(dirEntry);
             }
         }

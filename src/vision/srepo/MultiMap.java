@@ -1,9 +1,6 @@
 package vision.srepo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User: ervjo
@@ -14,7 +11,16 @@ import java.util.Map;
 public class MultiMap<E, T> {
     private Map<E, List<T>> store = new HashMap<E, List<T>>();
 
+
     public MultiMap() {
+    }
+
+    public List<T> get(E e) {
+        List<T> ts = store.get(e);
+        if (ts == null) {
+            return Collections.EMPTY_LIST;
+        }
+        return ts;
     }
 
     public void put(E e, T t) {
@@ -31,5 +37,12 @@ public class MultiMap<E, T> {
         if (list != null) {
             list.remove(t);
         }
+    }
+
+    public Set<Map.Entry<E, List<T>>> getEntries() {
+        final Set<Map.Entry<E, List<T>>> entries = store.entrySet();
+
+        return entries;
+
     }
 }
