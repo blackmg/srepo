@@ -13,10 +13,20 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class BasicEntry {
-    protected final String name;
+    private final String name;
+    private final BasicEntry parent;
 
-    public BasicEntry(String name) {
+    public BasicEntry(String name, BasicEntry parent) {
         this.name = name;
+        this.parent = parent;
+    }
+
+    public BasicEntry getParent() {
+        return parent;
+    }
+
+    public boolean isRoot() {
+        return parent == null;
     }
 
     public void print(int indent) {

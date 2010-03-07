@@ -52,7 +52,7 @@ public class BasicSystem<E extends BasicEntry> {
             if (values.size() > 1) {
                 System.out.println("Name : " + entry.getKey());
                 for (E value : values) {
-                    System.out.println("  " + value.getName());
+                    System.out.println("  " + value.toPrettyPrint());
                 }
             }
         }

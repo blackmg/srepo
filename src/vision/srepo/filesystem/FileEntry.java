@@ -1,5 +1,7 @@
 package vision.srepo.filesystem;
 
+import vision.srepo.BasicEntry;
+
 import java.nio.file.attribute.FileTime;
 
 /**
@@ -10,12 +12,12 @@ import java.nio.file.attribute.FileTime;
  */
 public class FileEntry extends Entry {
 
-    public FileEntry(String name, long modified) {
-        super(name, modified);
+    public FileEntry(String name, BasicEntry parent, long modified) {
+        super(name, parent, modified);
     }
 
-    public FileEntry(String name, FileTime modifiedFileTime) {
-        super(name, modifiedFileTime);
+    public FileEntry(String name, BasicEntry parent, FileTime modifiedFileTime) {
+        super(name, parent, modifiedFileTime);
     }
 
     @Override

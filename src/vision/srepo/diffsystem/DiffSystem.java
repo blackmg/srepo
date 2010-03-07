@@ -21,7 +21,7 @@ public class DiffSystem {
 
     public void build() {
 
-        rootDiffEntry = new DiffEntry(sourceFileSystem.getRootFileEntry(),
+        rootDiffEntry = new DiffEntry(null, sourceFileSystem.getRootFileEntry(),
                 targetFileSystem.getRootFileEntry());
 
 //        rootDiffEntry.build(path);

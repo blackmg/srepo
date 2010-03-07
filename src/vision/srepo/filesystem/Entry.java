@@ -14,13 +14,13 @@ import java.nio.file.attribute.FileTime;
 public abstract class Entry extends BasicEntry {
     private final long modified;  //millisecs
 
-    public Entry(String name, long modified) {
-        super(name);
+    public Entry(String name, BasicEntry parent, long modified) {
+        super(name, parent);
         this.modified = modified;
     }
 
-    public Entry(String name, FileTime modifiedFileTime) {
-        this(name, modifiedFileTime.toMillis());
+    public Entry(String name, BasicEntry parent, FileTime modifiedFileTime) {
+        this(name, parent, modifiedFileTime.toMillis());
     }
 
     public abstract boolean isFile();

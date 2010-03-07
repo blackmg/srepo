@@ -1,5 +1,7 @@
 package vision.srepo.filesystem;
 
+import vision.srepo.BasicEntry;
+
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Path;
@@ -21,16 +23,16 @@ public class DirEntry extends Entry {
     private List<DirEntry> dirs;
 
 
-    public DirEntry(String name, long modified) {
-        super(name, modified);
+    public DirEntry(String name, BasicEntry parent, long modified) {
+        super(name, parent, modified);
     }
 
-    public DirEntry(String name, FileTime modifiedFileTime) {
-        super(name, modifiedFileTime);
+    public DirEntry(String name, BasicEntry parent, FileTime modifiedFileTime) {
+        super(name, parent, modifiedFileTime);
     }
 
     public DirEntry(Path path) {
-        super(path.getName().toString(), 0);
+        super(path.getName().toString(), null, 0);
     }
 
     private class DirInfo {
@@ -89,7 +91,7 @@ public class DirEntry extends Entry {
                     final FileTime modifiedAttribute = attributes.lastModifiedTime();
                     final String name = childPath.getName().toString();
 
-                    FileEntry fileEntry = new FileEntry(name, modifiedAttribute);
+                    FileEntry fileEntry = new FileEntry(name, this, modifiedAttribute);
                     files.add(fileEntry);
                     fileEntry.added(fileSystem);
                 }
@@ -103,7 +105,7 @@ public class DirEntry extends Entry {
             for (DirInfo dirInfo : dirsFound) {
                 final String name = dirInfo.path.getName().toString();
 
-                DirEntry dirEntry = new DirEntry(name, dirInfo.attributes.lastModifiedTime());
+                DirEntry dirEntry = new DirEntry(name, this, dirInfo.attributes.lastModifiedTime());
                 dirEntry.build(dirInfo.path, fileSystem);
                 dirs.add(dirEntry);
             }

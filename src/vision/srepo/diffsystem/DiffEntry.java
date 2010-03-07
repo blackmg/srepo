@@ -13,8 +13,8 @@ public class DiffEntry extends BasicEntry {
     private Entry sourceEntry;
     private Entry targetEntry;
 
-    public DiffEntry(Entry sourceEntry, Entry targetEntry) {
-        super(sourceEntry != null ? sourceEntry.getName() : targetEntry.getName());
+    public DiffEntry(Entry parent, Entry sourceEntry, Entry targetEntry) {
+        super(sourceEntry != null ? sourceEntry.getName() : targetEntry.getName(), parent);
         this.sourceEntry = sourceEntry;
         this.targetEntry = targetEntry;
     }
