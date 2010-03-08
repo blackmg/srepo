@@ -4,6 +4,7 @@ import vision.srepo.BasicEntry;
 
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,6 +29,10 @@ public abstract class BasicFileEntry extends BasicEntry {
 
     public BasicFileEntry getParentEntry() {
         return (BasicFileEntry) getParent();
+    }
+
+    public List<BasicFileEntry> getFileChildren() {
+        return FileSystem.EMPTY_FILE_ENTRY_LIST;
     }
 
     public Path getPath() {

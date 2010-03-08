@@ -39,4 +39,8 @@ public class DiffSystem {
     public void print() {
         rootDiffEntry.print(0);
     }
+
+    public void addOperation() {
+
+    }
 }

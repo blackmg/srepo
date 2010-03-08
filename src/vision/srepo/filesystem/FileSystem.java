@@ -21,6 +21,7 @@ public class FileSystem extends BasicSystem<FileEntry> {
     private java.nio.file.FileSystem fileSystem;
 
     public final static List<BasicEntry> EMPTY_ENTRY_LIST = new ArrayList<BasicEntry>(0);
+    public final static List<BasicFileEntry> EMPTY_FILE_ENTRY_LIST = new ArrayList<BasicFileEntry>(0);
 
     public FileSystem(String rootFilePath) {
         fileSystem = FileSystems.getDefault();

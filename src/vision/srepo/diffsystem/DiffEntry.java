@@ -3,8 +3,12 @@ package vision.srepo.diffsystem;
 import vision.srepo.BasicEntry;
 import vision.srepo.Checksum;
 import vision.srepo.filesystem.BasicFileEntry;
+import vision.srepo.filesystem.FileSystem;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * User: ervjo
@@ -65,10 +69,10 @@ public class DiffEntry extends BasicEntry {
     }
 
     public void process(DiffSystem diffSystem) {
-        final List<BasicFileEntry> sourceChildren = sourceEntry == null ? Collections.EMPTY_LIST :
-                sourceEntry.getChildren();
-        final List<BasicFileEntry> targetChildren = targetEntry == null ? Collections.EMPTY_LIST :
-                targetEntry.getChildren();
+        final List<BasicFileEntry> sourceChildren = sourceEntry == null ? FileSystem.EMPTY_FILE_ENTRY_LIST :
+                sourceEntry.getFileChildren();
+        final List<BasicFileEntry> targetChildren = targetEntry == null ? FileSystem.EMPTY_FILE_ENTRY_LIST :
+                targetEntry.getFileChildren();
         if (sourceChildren.isEmpty() && targetChildren.isEmpty()) {
             return;
         }
@@ -108,7 +112,7 @@ public class DiffEntry extends BasicEntry {
     @Override
     public List<BasicEntry> getChildren() {
         if (children == null) {
-            return Collections.EMPTY_LIST;
+            return FileSystem.EMPTY_ENTRY_LIST;
         }
         List<BasicEntry> ret = new ArrayList<BasicEntry>();
         for (DiffEntry child : children) {
@@ -116,6 +120,7 @@ public class DiffEntry extends BasicEntry {
         }
         return ret;
     }
+
 
     @Override
     public boolean isFile() {
