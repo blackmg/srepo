@@ -46,8 +46,8 @@ public class DirEntry extends BasicFileEntry {
     }
 
     @Override
-    public List<BasicFileEntry> getChildren() {
-        List<BasicFileEntry> ret = new ArrayList<BasicFileEntry>();
+    public List<BasicEntry> getChildren() {
+        List<BasicEntry> ret = new ArrayList<BasicEntry>();
         if (files != null) {
             ret.addAll(files);
         }

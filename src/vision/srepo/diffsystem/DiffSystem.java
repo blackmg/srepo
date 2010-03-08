@@ -18,9 +18,7 @@ public class DiffSystem {
     public DiffSystem(FileSystem sourceFileSystem, FileSystem targetFileSystem) {
         this.sourceFileSystem = sourceFileSystem;
         this.targetFileSystem = targetFileSystem;
-    }
 
-    public void process() {
         rootDiffEntry = new DiffEntry(null, sourceFileSystem.getRootFileEntry(),
                 targetFileSystem.getRootFileEntry());
     }
@@ -39,6 +37,6 @@ public class DiffSystem {
     }
 
     public void print() {
-        //To change body of created methods use File | Settings | File Templates.
+        rootDiffEntry.print(0);
     }
 }

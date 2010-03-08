@@ -47,7 +47,13 @@ public class SRepo {
 
         clientFileSystem.print();
 
+        System.out.println("DiffSystem in " + serverPath);
+        System.out.println("-------------------------------");
+
+
         DiffSystem diffSystem = new DiffSystem(serverFileSystem, clientFileSystem);
+
+        diffSystem.process();
 
         diffSystem.print();
     }

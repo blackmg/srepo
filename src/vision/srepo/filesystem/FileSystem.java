@@ -1,5 +1,6 @@
 package vision.srepo.filesystem;
 
+import vision.srepo.BasicEntry;
 import vision.srepo.BasicSystem;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class FileSystem extends BasicSystem<FileEntry> {
     private final Path path;
     private java.nio.file.FileSystem fileSystem;
 
-    public final static List<BasicFileEntry> EMPTY_ENTRY_LIST = new ArrayList<BasicFileEntry>(0);
+    public final static List<BasicEntry> EMPTY_ENTRY_LIST = new ArrayList<BasicEntry>(0);
 
     public FileSystem(String rootFilePath) {
         fileSystem = FileSystems.getDefault();

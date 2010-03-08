@@ -65,9 +65,10 @@ public class DiffEntry extends BasicEntry {
     }
 
     public void process(DiffSystem diffSystem) {
-
-        final List<BasicFileEntry> sourceChildren = sourceEntry.getChildren();
-        final List<BasicFileEntry> targetChildren = targetEntry.getChildren();
+        final List<BasicFileEntry> sourceChildren = sourceEntry == null ? Collections.EMPTY_LIST :
+                sourceEntry.getChildren();
+        final List<BasicFileEntry> targetChildren = targetEntry == null ? Collections.EMPTY_LIST :
+                targetEntry.getChildren();
         if (sourceChildren.isEmpty() && targetChildren.isEmpty()) {
             return;
         }
@@ -105,12 +106,15 @@ public class DiffEntry extends BasicEntry {
     }
 
     @Override
-    public List<BasicFileEntry> getChildren() {
+    public List<BasicEntry> getChildren() {
         if (children == null) {
             return Collections.EMPTY_LIST;
         }
-//        return children;
-        return null; // HACK HERE
+        List<BasicEntry> ret = new ArrayList<BasicEntry>();
+        for (DiffEntry child : children) {
+            ret.add(child);
+        }
+        return ret;
     }
 
     @Override

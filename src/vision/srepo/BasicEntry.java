@@ -1,6 +1,5 @@
 package vision.srepo;
 
-import vision.srepo.filesystem.BasicFileEntry;
 import vision.srepo.filesystem.FileSystem;
 
 import java.util.List;
@@ -35,12 +34,12 @@ public abstract class BasicEntry {
             System.out.print("  ");
         }
         System.out.println(toPrettyPrint());
-        for (BasicFileEntry child : getChildren()) {
+        for (BasicEntry child : getChildren()) {
             child.print(indent + 1);
         }
     }
 
-    public List<BasicFileEntry> getChildren() {
+    public List<BasicEntry> getChildren() {
         return FileSystem.EMPTY_ENTRY_LIST;
     }
 
