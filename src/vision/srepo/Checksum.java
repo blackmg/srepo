@@ -73,13 +73,22 @@ public class Checksum {
         return hashcode;
     }
 
+    public static String hexToString(int value, int width) {
+        return String.format("%0" + width + "X", value);
+    }
+
+    public String getId() {
+        String width = Integer.toHexString(Integer.MAX_VALUE);
+
+        return hexToString(hashCode(), width.length());
+    }
+
     @Override
     public String toString() {
         final int length = digiest.length;
         return "Checksum{" +
                 "size=" + size +
-                ", digiest=" + digiest[length - 1] +
-                +digiest[length - 2] +
+                ", digiest=" + getId() +
                 '}';
     }
 
