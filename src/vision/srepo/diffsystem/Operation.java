@@ -1,5 +1,8 @@
 package vision.srepo.diffsystem;
 
+import vision.srepo.basicsystem.RepoPath;
+import vision.srepo.filesystem.FileSystem;
+
 /**
  * Created by IntelliJ IDEA.
  * User: johan
@@ -7,13 +10,17 @@ package vision.srepo.diffsystem;
  * Time: 14:34:45
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Operation implements Runnable {
+public abstract class Operation {
 
     enum Type {
         PULL, PUSH
     }
 
     private Type type;
+    private RepoPath repoPath;
 
+    abstract public String getDescription();
 
+    abstract public void execute(FileSystem sourceFileSystem,
+                                 FileSystem targetFileSystem);
 }

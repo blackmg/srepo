@@ -68,7 +68,14 @@ public class DiffEntry extends BasicEntry {
         return diffStatus == DiffStatus.CONFLICT;
     }
 
+    private void createOperation(DiffSystem diffSystem) {
+        //To change body of created methods use File | Settings | File Templates.
+    }
+
+
     public void process(DiffSystem diffSystem) {
+        createOperation(diffSystem);
+
         final List<BasicFileEntry> sourceChildren = sourceEntry == null ? FileSystem.EMPTY_FILE_ENTRY_LIST :
                 sourceEntry.getFileChildren();
         final List<BasicFileEntry> targetChildren = targetEntry == null ? FileSystem.EMPTY_FILE_ENTRY_LIST :
