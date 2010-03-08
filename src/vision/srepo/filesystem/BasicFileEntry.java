@@ -1,6 +1,6 @@
 package vision.srepo.filesystem;
 
-import vision.srepo.BasicEntry;
+import vision.srepo.basicsystem.BasicEntry;
 
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;

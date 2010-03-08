@@ -1,7 +1,7 @@
 package vision.srepo.filesystem;
 
-import vision.srepo.BasicEntry;
-import vision.srepo.BasicSystem;
+import vision.srepo.basicsystem.BasicEntry;
+import vision.srepo.basicsystem.BasicSystem;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;

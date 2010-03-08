@@ -1,7 +1,7 @@
 package vision.srepo.diffsystem;
 
-import vision.srepo.BasicEntry;
 import vision.srepo.Checksum;
+import vision.srepo.basicsystem.BasicEntry;
 import vision.srepo.filesystem.BasicFileEntry;
 import vision.srepo.filesystem.FileSystem;
 

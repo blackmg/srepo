@@ -1,5 +1,6 @@
-package vision.srepo;
+package vision.srepo.basicsystem;
 
+import vision.srepo.Checksum;
 import vision.srepo.filesystem.FileSystem;
 
 import java.util.List;
