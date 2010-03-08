@@ -51,4 +51,8 @@ public abstract class BasicFileEntry extends BasicEntry {
         return modified;
     }
 
+    public long getSize() {
+        return 0;
+    }
+
 }

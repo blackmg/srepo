@@ -48,6 +48,13 @@ public abstract class BasicEntry {
         return name;
     }
 
+    public String getRepoPath() {
+        if (isRoot()) {
+            return "";
+        }
+        return getParent().getRepoPath() + "/" + name;
+    }
+
     public abstract boolean isFile();
 
 

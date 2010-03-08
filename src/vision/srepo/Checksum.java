@@ -20,11 +20,13 @@ import java.util.Set;
  */
 public class Checksum {
     private final long size;
-    private byte[] digiest;
-    private int hashcode;
+    private final byte[] digiest;
+    private final long hashcode;
 
     public Checksum(Path path, long size) {
         this.size = size;
+        long hash = 0;
+        byte tmpByte[] = null;
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
             InputStream fileInputStream = path.newInputStream();
@@ -35,9 +37,10 @@ public class Checksum {
             while ((tmp = input.read()) != -1) {
                 messageDigest.update((byte) tmp);
             }
-            digiest = messageDigest.digest();
-            for (byte b : digiest) {
-                hashcode = 31 * hashcode + b;
+            tmpByte = messageDigest.digest();
+            hash = (int) size;
+            for (byte b : tmpByte) {
+                hash = 31 * hash + b;
             }
             input.close();
             fileInputStream.close();
@@ -48,6 +51,9 @@ public class Checksum {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+            hashcode = hash;
+            digiest = tmpByte;
         }
     }
 
@@ -70,7 +76,7 @@ public class Checksum {
 
     @Override
     public int hashCode() {
-        return hashcode;
+        return (int) hashcode;
     }
 
     public static String hexToString(int value, int width) {

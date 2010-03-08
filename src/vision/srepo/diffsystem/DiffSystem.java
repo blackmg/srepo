@@ -9,6 +9,7 @@ import vision.srepo.filesystem.FileSystem;
  * To change this template use File | Settings | File Templates.
  */
 public class DiffSystem {
+    private FileSystem baseFileSystem; // TODO: add common ancestor and therefore deleted support 
     private FileSystem sourceFileSystem;
     private FileSystem targetFileSystem;
 
@@ -19,12 +20,22 @@ public class DiffSystem {
         this.targetFileSystem = targetFileSystem;
     }
 
-    public void build() {
-
+    public void process() {
         rootDiffEntry = new DiffEntry(null, sourceFileSystem.getRootFileEntry(),
                 targetFileSystem.getRootFileEntry());
+    }
 
-//        rootDiffEntry.build(path);
+    /**
+     * Find out what needs to be done in this path
+     */
+    public void process() {
+        rootDiffEntry.process(this);
+    }
+
+    /**
+     * Do updates (receive / send / delete) files in this path
+     */
+    public void doUpdates() {
     }
 
     public void print() {

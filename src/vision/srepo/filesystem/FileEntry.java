@@ -39,6 +39,11 @@ public class FileEntry extends BasicFileEntry {
     }
 
     @Override
+    public long getSize() {
+        return size;
+    }
+
+    @Override
     public String toPrettyPrint() {
         return "<F> " + getName() + " : " + getChecksum();
     }
