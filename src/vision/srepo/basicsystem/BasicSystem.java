@@ -86,7 +86,7 @@ public class BasicSystem<E extends BasicEntry> {
         }
         final Checksum current = entry.getChecksum();
         if (current != null) {
-            removeChecksum(entry, checksum);
+            removeChecksum(entry, current);
         }
         addChecksum(entry, checksum);
     }
