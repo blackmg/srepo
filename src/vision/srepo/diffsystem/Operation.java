@@ -19,6 +19,19 @@ public abstract class Operation {
     private Type type;
     private RepoPath repoPath;
 
+    public Operation(RepoPath repoPath, Type type) {
+        this.repoPath = repoPath;
+        this.type = type;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public RepoPath getRepoPath() {
+        return repoPath;
+    }
+
     abstract public String getDescription();
 
     abstract public void execute(FileSystem sourceFileSystem,

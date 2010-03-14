@@ -24,6 +24,7 @@ public class DiffEntry extends BasicEntry {
 
     public enum DiffStatus {
         CONFLICT,
+        ISSUE,
         SAME,
         MAY_BE_SAME,
         IN_SOURCE, DELETED_IN_SOURCE,
@@ -68,8 +69,20 @@ public class DiffEntry extends BasicEntry {
         return diffStatus == DiffStatus.CONFLICT;
     }
 
-    private void createOperation(DiffSystem diffSystem) {
-        //To change body of created methods use File | Settings | File Templates.
+    public boolean isIssues() {
+        return diffStatus == DiffStatus.ISSUE || isConflict();
+    }
+
+
+    private Operation createOperation(DiffSystem diffSystem) {
+        if (!isIssues() || diffStatus == DiffStatus.SAME) {
+            return null;
+        }
+        if (isDir()) {
+            if (diffStatus == DiffStatus.IN_SOURCE) {
+
+            }
+        }
     }
 
 
@@ -133,6 +146,13 @@ public class DiffEntry extends BasicEntry {
     public boolean isFile() {
         boolean ret = sourceEntry != null && sourceEntry.isFile();
         ret |= targetEntry != null && targetEntry.isFile();
+
+        return ret;
+    }
+
+    public boolean isDir() {
+        boolean ret = sourceEntry != null && sourceEntry.isDirectory();
+        ret |= targetEntry != null && targetEntry.isDirectory();
 
         return ret;
     }

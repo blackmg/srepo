@@ -2,6 +2,7 @@ package vision.srepo.filesystem;
 
 import vision.srepo.basicsystem.BasicEntry;
 import vision.srepo.basicsystem.BasicSystem;
+import vision.srepo.basicsystem.RepoPath;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -52,4 +53,11 @@ public class FileSystem extends BasicSystem<FileEntry> {
         return rootFileEntry;
     }
 
+    public Path getPath(RepoPath repoPath) {
+        final FileEntry fileEntry = resolve(repoPath);
+        if (fileEntry == null) {
+            return null;
+        }
+        return fileEntry.getPath();
+    }
 }

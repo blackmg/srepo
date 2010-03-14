@@ -234,6 +234,7 @@
     <dictionary name="ervjo">
       <words>
         <w>checksum</w>
+        <w>repo</w>
       </words>
     </dictionary>
   </component>

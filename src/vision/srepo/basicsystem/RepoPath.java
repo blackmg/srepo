@@ -1,5 +1,7 @@
 package vision.srepo.basicsystem;
 
+import java.util.Collection;
+
 /**
  * Created by IntelliJ IDEA.
  * User: johan
@@ -7,15 +9,14 @@ package vision.srepo.basicsystem;
  * Time: 14:37:44
  * To change this template use File | Settings | File Templates.
  */
-public class RepoPath {
-    private String path;
+public interface RepoPath extends Iterable<String> {
 
-    public RepoPath(String path) {
-        this.path = path;
-    }
+    int getDepth();
+
+    String getName();
 
     @Override
-    public String toString() {
-        return path;
-    }
+    String toString();
+
+    Collection<String> getNames();
 }

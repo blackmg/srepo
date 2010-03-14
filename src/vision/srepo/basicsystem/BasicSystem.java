@@ -3,9 +3,7 @@ package vision.srepo.basicsystem;
 import vision.srepo.Checksum;
 import vision.srepo.MultiMap;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * User: ervjo
@@ -14,13 +12,13 @@ import java.util.Set;
  * To change this template use File | Settings | File Templates.
  */
 public class BasicSystem<E extends BasicEntry> {
-    private BasicEntry rootBasicEntry;
+    private E rootBasicEntry;
 
     private MultiMap<String, E> byNameIndex = new MultiMap<String, E>();
     private MultiMap<Checksum, E> byChecksumIndex = new MultiMap<Checksum, E>();
 
 
-    public void setRootBasicEntry(BasicEntry rootBasicEntry) {
+    public void setRootBasicEntry(E rootBasicEntry) {
         this.rootBasicEntry = rootBasicEntry;
     }
 
@@ -105,6 +103,19 @@ public class BasicSystem<E extends BasicEntry> {
 
     public List<E> getByChecksum(Checksum checksum) {
         return byChecksumIndex.get(checksum);
+    }
+
+    public E resolve(RepoPath repoPath) {
+        E current = rootBasicEntry;
+        final Collection<String> names = repoPath.getNames();
+        Iterator<String> stringIterator = names.iterator();
+        stringIterator.next(); // skip root
+        for (; stringIterator.hasNext();) {
+            String name = stringIterator.next();
+            final BasicEntry child = current.getChild(name);
+            current = current.getChild(name);
+        }
+        return current;
     }
 
 }

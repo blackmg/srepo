@@ -1,8 +1,8 @@
 package vision.srepo.basicsystem;
 
 import vision.srepo.Checksum;
-import vision.srepo.filesystem.FileSystem;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,16 +12,23 @@ import java.util.List;
  * Time: 16:41:32
  * To change this template use File | Settings | File Templates.
  */
-public abstract class BasicEntry {
+public abstract class BasicEntry<E extends BasicEntry> {
     private final String name;
-    private final BasicEntry parent;
+    private final E parent;
+    private final RepoPathParent repoPath;
 
-    public BasicEntry(String name, BasicEntry parent) {
+    public BasicEntry(String name, E parent) {
         this.name = name;
         this.parent = parent;
+
+        if (parent == null) {
+            repoPath = new RepoPathParent();
+        } else {
+            repoPath = new RepoPathParent(parent.getRepoPath(), name);
+        }
     }
 
-    public BasicEntry getParent() {
+    public E getParent() {
         return parent;
     }
 
@@ -40,19 +47,16 @@ public abstract class BasicEntry {
         }
     }
 
-    public List<BasicEntry> getChildren() {
-        return FileSystem.EMPTY_ENTRY_LIST;
+    public List<E> getChildren() {
+        return Collections.EMPTY_LIST;
     }
 
     public String getName() {
         return name;
     }
 
-    public RepoPath getRepoPath() {
-        if (isRoot()) {
-            return new RepoPath("");
-        }
-        return new RepoPath(getParent().getRepoPath() + "/" + name);
+    public RepoPathParent getRepoPath() {
+        return repoPath;
     }
 
     public abstract boolean isFile();
@@ -75,4 +79,14 @@ public abstract class BasicEntry {
     }
 
     public abstract String toPrettyPrint();
+
+    public E getChild(String name) {
+        final List<E> entries = getChildren();
+        for (E entry : entries) {
+            if (entry.getName().equals(name)) {
+                return entry;
+            }
+        }
+        return null;
+    }
 }
