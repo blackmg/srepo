@@ -112,8 +112,7 @@ public class BasicSystem<E extends BasicEntry> {
         stringIterator.next(); // skip root
         for (; stringIterator.hasNext();) {
             String name = stringIterator.next();
-            final BasicEntry child = current.getChild(name);
-            current = current.getChild(name);
+            current = (E) current.getChild(name);
         }
         return current;
     }

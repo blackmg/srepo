@@ -16,7 +16,7 @@ import java.util.List;
  * Date: 2010-jan-31
  * Time: 10:57:31
  */
-public class FileSystem extends BasicSystem<FileEntry> {
+public class FileSystem extends BasicSystem<BasicFileEntry> {
     private DirEntry rootFileEntry;
     private final Path path;
     private java.nio.file.FileSystem fileSystem;
@@ -54,7 +54,7 @@ public class FileSystem extends BasicSystem<FileEntry> {
     }
 
     public Path getPath(RepoPath repoPath) {
-        final FileEntry fileEntry = resolve(repoPath);
+        final BasicFileEntry fileEntry = resolve(repoPath);
         if (fileEntry == null) {
             return null;
         }
