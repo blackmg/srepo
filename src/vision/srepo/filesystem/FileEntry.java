@@ -32,9 +32,9 @@ public class FileEntry extends BasicFileEntry {
 
     @Override
     public Checksum getChecksum() {
-        if (checksum == null) {
-            checksum = new Checksum(getPath(), size);
-        }
+//        if (checksum == null) {
+//            checksum = new Checksum(getPath(), size);
+//        }
         return checksum;
     }
 
