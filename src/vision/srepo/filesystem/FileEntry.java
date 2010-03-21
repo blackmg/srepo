@@ -45,7 +45,7 @@ public class FileEntry extends BasicFileEntry {
 
     @Override
     public String toPrettyPrint() {
-        return "<F> " + getName() + " : " + getChecksum();
+        return "<F> " + getName() + " : CHK=" + (getChecksum() == null ? " none" : getChecksum());
     }
 
 }

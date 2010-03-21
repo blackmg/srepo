@@ -27,8 +27,8 @@ public class DiffEntry extends BasicEntry {
         ISSUE,
         SAME,
         MAY_BE_SAME,
-        IN_SOURCE, DELETED_IN_SOURCE,
-        IN_TARGET, DELETED_IN_TARGET,
+        ONLY_IN_SOURCE, //DELETED_IN_SOURCE,
+        ONLY_IN_TARGET//, DELETED_IN_TARGET,
     }
 
     private final DiffStatus diffStatus;
@@ -40,10 +40,10 @@ public class DiffEntry extends BasicEntry {
 
         if (targetEntry == null) {
             // TODO: check for exist in base, it could be deleted in target
-            diffStatus = DiffStatus.IN_SOURCE;
+            diffStatus = DiffStatus.ONLY_IN_SOURCE;
         } else if (sourceEntry == null) {
             // TODO: check for deleted in source
-            diffStatus = DiffStatus.IN_TARGET;
+            diffStatus = DiffStatus.ONLY_IN_TARGET;
         } else if (sourceEntry.isFile() != targetEntry.isFile()) {
             diffStatus = DiffStatus.CONFLICT;
         } else if (sourceEntry.isDirectory() && targetEntry.isDirectory()) {
@@ -54,12 +54,16 @@ public class DiffEntry extends BasicEntry {
             final Checksum sourceChecksum = sourceEntry.getChecksum();
             final Checksum targetChecksum = targetEntry.getChecksum();
             if (sourceChecksum == null || targetChecksum == null) {
-                diffStatus = DiffStatus.MAY_BE_SAME;
+                if (sourceEntry.getModified() == targetEntry.getModified()) {
+                    diffStatus = DiffStatus.SAME;
+                } else {
+                    diffStatus = DiffStatus.MAY_BE_SAME;
+                }
             } else {
                 if (sourceChecksum.equals(targetChecksum)) {
                     diffStatus = DiffStatus.SAME;
                 } else {
-                    diffStatus = DiffStatus.MAY_BE_SAME;
+                    diffStatus = DiffStatus.CONFLICT;
                 }
             }
         }
@@ -79,7 +83,7 @@ public class DiffEntry extends BasicEntry {
             return null;
         }
         if (isDir()) {
-            if (diffStatus == DiffStatus.IN_SOURCE) {
+            if (diffStatus == DiffStatus.ONLY_IN_SOURCE) {
 
             }
         }
