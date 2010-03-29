@@ -15,17 +15,11 @@ import java.util.List;
 public abstract class BasicEntry<E extends BasicEntry> {
     private final String name;
     private final E parent;
-    private final RepoPathParent repoPath;
+    private transient RepoPathParent repoPath;
 
     public BasicEntry(String name, E parent) {
         this.name = name;
         this.parent = parent;
-
-        if (parent == null) {
-            repoPath = new RepoPathParent();
-        } else {
-            repoPath = new RepoPathParent(parent.getRepoPath(), name);
-        }
     }
 
     public E getParent() {
@@ -56,6 +50,14 @@ public abstract class BasicEntry<E extends BasicEntry> {
     }
 
     public RepoPathParent getRepoPath() {
+        if (repoPath == null) {
+            if (parent == null) {
+                repoPath = new RepoPathParent();
+            } else {
+                repoPath = new RepoPathParent(parent.getRepoPath(), name);
+            }
+        }
+
         return repoPath;
     }
 

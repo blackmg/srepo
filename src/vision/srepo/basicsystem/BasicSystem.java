@@ -3,6 +3,8 @@ package vision.srepo.basicsystem;
 import vision.srepo.Checksum;
 import vision.srepo.MultiMap;
 
+import java.io.*;
+import java.nio.file.Path;
 import java.util.*;
 
 /**
@@ -115,6 +117,30 @@ public class BasicSystem<E extends BasicEntry> {
             current = (E) current.getChild(name);
         }
         return current;
+    }
+
+    public static void saveToFile(Path path, Object obj) throws IOException {
+        if (path.exists()) {
+            path.delete();
+        }
+        OutputStream fileOutputStream = path.newOutputStream();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(obj);
+        objectOutputStream.close();
+    }
+
+    public static Object readFromFile(Path path) throws IOException {
+        InputStream inputStream = path.newInputStream();
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        Object ret = null;
+        try {
+            ret = objectInputStream.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } finally {
+            objectInputStream.close();
+        }
+        return ret;
     }
 
 }
