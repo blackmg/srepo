@@ -4,6 +4,9 @@ import vision.srepo.diffsystem.DiffSystem;
 import vision.srepo.filesystem.FileSystem;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,6 +25,32 @@ import java.io.File;
  */
 public class SRepo {
     private FileSystem fileSystem;
+
+    private java.nio.file.FileSystem repoFileSystem;
+    private Path rootPath;
+    private Path sRepoPath;
+
+    private long id;
+
+    public SRepo(String repoPath) {
+        repoFileSystem = FileSystems.getDefault();
+        rootPath = repoFileSystem.getPath(repoPath);
+        sRepoPath = makeSureExists(rootPath, ".srepo");
+        sRepoPath = makeSureExists(rootPath, ".srepo");
+
+    }
+
+    public static Path makeSureExists(Path parent, String name) {
+        Path child = parent.resolve(name);
+        if (!child.exists()) {
+            try {
+                child.createDirectory();
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+        }
+        return child;
+    }
 
     public SRepo(String serverPath, String clientPath) {
 
